@@ -2,19 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css')}}"/>
     <title>News</title>
 </head>
 <body>
-    <div>
+    <header>
         <h1>Flask Simple News Web Application</h1>
-    </div>
+    </header>
 
-    <div>
+    <nav>
+        <p>Navigation</p>
+    </nav>
+
+    <aside>
+        <a class="weatherwidget-io" href="https://forecast7.com/en/40d71n74d01/new-york/" data-label_1="NEW YORK" data-label_2="WEATHER" data-days="5" data-theme="clear" >NEW YORK WEATHER</a>
+        <script>
+        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+        </script>
+    </aside>
+    <main>
         {% for new, des, i in context %}
-            <img src="{{i}}" alt="">
-            <h3>News: </h3> {{new}}
-            <h4>Description: </h4> {{des}}
+            <article>
+                <img src="{{i}}" alt="">
+                <h3>News: </h3> {{new}}
+                <h4>Description: </h4> {{des}}
+            </article>
         {% endfor %}
-    </div>
+    </main>
 </body>
 </html>
