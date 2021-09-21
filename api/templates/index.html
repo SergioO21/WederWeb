@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>News</title>
+</head>
+<body>
+    <div>
+        <h1>Flask Simple News Web Application</h1>
+    </div>
+
+    <div>
+        {% for new, des, i in context %}
+            <img src="{{i}}" alt="">
+            <h3>News: </h3> {{new}}
+            <h4>Description: </h4> {{des}}
+        {% endfor %}
+    </div>
+</body>
+</html>
