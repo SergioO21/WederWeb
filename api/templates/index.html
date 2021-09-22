@@ -2,32 +2,55 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css')}}"/>
     <title>News</title>
 </head>
 <body>
-    <header>
-        <h1>Flask Simple News Web Application</h1>
-    </header>
-
-    <nav>
-        <p>Navigation</p>
-    </nav>
+    <div class="navigation-bar">
+        <header>
+            <h1 class="header">Flask Simple News Web Application</h1>
+        </header>
+        <nav>
+            <div class="search">
+                <input type="text" class="search-bar">
+                <button>Search</button>
+            </div>
+        </nav>
+    </div>
 
     <aside>
-        <a class="weatherwidget-io" href="https://forecast7.com/en/40d71n74d01/new-york/" data-label_1="NEW YORK" data-label_2="WEATHER" data-days="5" data-theme="clear" >NEW YORK WEATHER</a>
+        <a class="weatherwidget-io" href="https://forecast7.com/en/40d71n74d01/new-york/" data-label_1="NEW YORK" data-label_2="WEATHER" data-icons="Climacons Animated" data-days="5" data-theme="pure" >NEW YORK WEATHER</a>
         <script>
         !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
         </script>
     </aside>
+
     <main>
-        {% for new, des, i in context %}
-            <article>
-                <img src="{{i}}" alt="">
-                <h3>News: </h3> {{new}}
-                <h4>Description: </h4> {{des}}
-            </article>
+        {% for new, des, img, url in context %}
+            {% if new and des and img and url%}
+                <article>
+                    <a href="{{url}}" target="_blank">
+                        <img class="article-img" src="{{img}}" alt="">
+                    </a>
+                    <div class="article-title">
+                        <h2>{{new}}</h2>
+                    </div>
+                    <div class="article-des">
+                        <p>{{des}}</p>
+                    </div>
+                </article>
+            {% endif %}
         {% endfor %}
     </main>
+
+    <footer>
+        <div class="footer">
+            <img class="footer-img" src="{{ url_for('static', filename='baqdev.png')}}"/>
+            <h4 class="footer-text"><b>Made by BAQDEV</b></h4>
+        </div>
+    </footer>
 </body>
 </html>
